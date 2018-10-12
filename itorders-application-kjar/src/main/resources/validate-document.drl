@@ -1,0 +1,52 @@
+package defaultPackage;
+
+import java.util.Map;
+import java.util.HashMap;
+import org.jbpm.casemgmt.api.CaseService;
+import org.jbpm.casemgmt.api.model.instance.CaseFileInstance;
+import org.jbpm.document.Document;
+import org.jbpm.services.api.service.ServiceRegistry;
+import org.jbpm.demo.itorders.Order;
+import org.kie.api.runtime.process.CaseAssignment;
+
+rule "Setup order"
+when 
+    $caseData : CaseFileInstance(data.get("order") == null)
+          
+then 
+
+    ((CaseAssignment)$caseData).assignUser("admin", "kieserver");
+    Order order = new Order();
+    order.setName(((CaseAssignment)$caseData).getAssignments("owner").iterator().next().getId());
+    order.setReference($caseData.getCaseId());
+    order.setOrigin(System.getProperty("org.kie.server.location") + "/containers/itorders/cases/instances/" + $caseData.getCaseId() + "/caseFile");
+    System.out.println("Order setup");
+    $caseData.add("order", order);
+    update($caseData);
+end
+
+rule "Invalid document name - reupload"
+when 
+    $caseData : CaseFileInstance()
+    Document(name == "invalid.pdf") from $caseData.getData("hwSpec")
+          
+then 
+    
+    System.out.println("Hardware specification is invalid");
+    $caseData.remove("hwSpec");
+    update($caseData);
+    CaseService caseService = (CaseService) ServiceRegistry.get().service(ServiceRegistry.CASE_SERVICE);
+    caseService.triggerAdHocFragment($caseData.getCaseId(), "Prepare hardware spec", null);
+end
+
+rule "Mark as ordered"
+when 
+    $caseData : CaseFileInstance(data.get("orderNumber") != null, data.get("ordered") == null)
+          
+then 
+    Order order =  (Order)$caseData.getData("order");
+    order.setOrderNumber((String)$caseData.getData("orderNumber"));
+    System.out.println("Order has been placed with number " + $caseData.getData("orderNumber"));
+    $caseData.add("ordered", true);
+    update($caseData);
+end

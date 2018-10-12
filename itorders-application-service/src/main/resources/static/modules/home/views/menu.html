@@ -1,0 +1,102 @@
+﻿<nav class="navbar navbar-default navbar-pf" role="navigation">
+  <div class="navbar-header">
+      <strong class="navbar-brand">Order IT hardware application >> {{ Page.title() }} </strong>
+  </div>
+  <div class="collapse navbar-collapse navbar-collapse-5">
+    <ul class="nav navbar-nav navbar-utility">
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="pficon pficon-user"></span>
+          {{globals.currentUser.username}} ( {{globals.currentUser.role}} )
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/login">Logout</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-primary">
+      <li class="dropdown" restrict access="Employee">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          Orders
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/listmyorders">My orders</a>
+          </li>
+          <li class="divider"></li>
+           <li>
+            <a href="#/listorders">List orders</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#/">New order</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" restrict access="Manager">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          Manager
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/managertasks">Show pending approvals</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#/listorders">List orders</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="">Contact requestor</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="">Contact supplier</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" restrict access="Supplier">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          Supplier
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/suppliertasks">Show pending tasks</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#/orderstoplace">Orders to be placed</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#/listorders">List orders</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="">Contact requestor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          Tools
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/processinstancediagrams">Process Instance Diagrams</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#/">Home</a>
+      </li>
+    </ul>
+  </div>
+</nav>

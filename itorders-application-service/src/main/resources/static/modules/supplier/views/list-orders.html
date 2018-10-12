@@ -1,0 +1,41 @@
+<header ng-include src="'modules/home/views/menu.html'"></header>
+<div class="container-fluid">
+  <div class="list-group list-view-pf list-view-pf-view">
+    <div class="list-group-item" ng-repeat="task in tasks">
+      <div class="list-view-pf-actions">
+        <div ng-if="task['task-status'] == 'Ready'">
+          <button class="btn btn-default" ng-click="selected(task['task-id'])">Place an order</button>
+        </div>
+        <div ng-if="task['task-status'] == 'Reserved' || task['task-status'] == 'InProgress'">
+          <button class="btn btn-default" ng-click="selected(task['task-id'])">Continue</button>
+        </div>
+      </div>
+      <div class="list-view-pf-main-info">
+        <div class="list-view-pf-left">
+          <span class="glyphicon glyphicon-list"></span>
+        </div>
+        <div class="list-view-pf-body">
+          <div class="list-view-pf-description">
+            <div class="list-group-item-heading">
+              {{ task['task-name'] }}
+            </div>
+            <div class="list-group-item-text">
+              {{ task['task-description'] }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="!tasks.length">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><center>No orders are available at this time.</center></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+  <ng-include src="taskDetailsURL" ng-controller="SupplierOrderDetailsController" onload="selected(getSelected())"></ng-include>
+</div>

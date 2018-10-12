@@ -1,0 +1,43 @@
+<header ng-include src="'modules/home/views/menu.html'"></header>
+<div class="container-fluid">
+  <div class="list-group list-view-pf list-view-pf-view">
+    <div class="list-group-item" ng-repeat="order in orders">
+      <div class="list-view-pf-actions">
+        <button class="btn btn-default" ng-click="selected(order['case-id'], '/orders')">Open</button>
+        <div class="dropdown pull-right dropdown-kebab-pf">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight14" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+          </button>
+        </div>
+
+      </div>
+      <div class="list-view-pf-main-info">
+        <div class="list-view-pf-left">
+          <span class="glyphicon glyphicon-list"></span>
+        </div>
+        <div class="list-view-pf-body">
+          <div class="list-view-pf-description">
+            <div class="list-group-item-heading">
+              {{ order['case-description'] }}
+            </div>
+            <div class="list-group-item-text">
+              Order number <b>{{ order['case-id'] }}</b> initiated by {{ order['case-owner'] }}.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="!orders.length">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><center>No hardware orders are available at this time.</center></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+  <ng-include src="orderDetailsURL" ng-controller="OrderDetailsController" onload="selected(getSelected())"></ng-include>
+</div>
+
