@@ -12,7 +12,7 @@ if "%*" == "" (
 
 	cd ..
 
-	for %%s in ("itorders-tracking-service") do (
+	for %%s in ("-model" "itorders-tracking-service") do (
 
 			cd *%%s
 			echo ===============================================================================

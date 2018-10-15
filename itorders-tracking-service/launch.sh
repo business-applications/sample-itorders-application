@@ -24,7 +24,7 @@ if [ "$MVN_ARG_LINE" != "" ] ; then
 
     "$mvnBin" -v
     echo
-    projects=( "itorders-tracking-service")
+    projects=( "*-model" "itorders-tracking-service")
 
     for suffix in "${projects[@]}"; do
 
