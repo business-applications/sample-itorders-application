@@ -17,6 +17,19 @@ Suppliers can also interact via this service to provide recommended hardware spe
 It's implemented as SpringBoot application with business automation capability - heavy lifting is
 done by case management features.
 
+## Launch order service
+
+Go to itorders-application-service and launch the service
+```
+./launch.sh clean install     // for unix/linux
+```
+
+```
+./launch.bat clean install     // for windows
+```
+
+Then, open a browser to http://localhost:8090
+
 ## it orders tracking service
 
 Tracking service allows to keep an eye on placed orders and assign order numbers for tracking purposes.
@@ -39,19 +52,6 @@ Go to itorders-tracking-service and launch the service
 ```
 
 Then, open a browser to http://localhost:8180
-
-## Launch order service
-
-Go to itorders-application-service and launch the service
-```
-./launch.sh clean install     // for unix/linux
-```
-
-```
-./launch.bat clean install     // for windows
-```
-
-Then, open a browser to http://localhost:8090
 
 # Login to application
 
