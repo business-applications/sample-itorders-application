@@ -6,7 +6,7 @@
   <version>1.0-SNAPSHOT</version>
   
   <properties>
-    <version.vertx>3.5.4</version.vertx>
+    <version.vertx>3.9.4</version.vertx>
   </properties>
   
   <dependencies>
